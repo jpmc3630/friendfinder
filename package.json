@@ -1,0 +1,23 @@
+{
+  "name": "friendfinder",
+  "version": "1.0.0",
+  "description": "Dating App",
+  "main": "server.js",
+  "scripts": {
+    "test": "nodemon server.js",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jpmc3630/friendfinder.git"
+  },
+  "author": "James McGlone",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/jpmc3630/friendfinder/issues"
+  },
+  "homepage": "https://github.com/jpmc3630/friendfinder#readme",
+  "dependencies": {
+    "express": "^4.17.1"
+  }
+}
