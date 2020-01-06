@@ -5,14 +5,25 @@ console.log('API Route Connected');
 var path = require('path');
 
 // Link in Friends Data
-var friendsData = require('../data/friends.js');
+
+var fs = require('fs');
+
+// Link in Friends Data
+let friendsFile = path.join(__dirname + '/../data/friends.js');
+let friendsData = JSON.parse(fs.readFileSync(friendsFile, "utf8"));
+
+
+
+
 
 
 // Includes Two Routes
 function apiRoutes(app) {
     
     app.get('/api/friends', function (req, res) {
+        
         res.json(friendsData);
+
     });
 
       
@@ -93,6 +104,7 @@ function findFriend(newUser) {
         
 
         friendsData.push(newUser);
+        fs.writeFileSync(friendsFile, JSON.stringify(friendsData));
 
 
         return returnMessage;
