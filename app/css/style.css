@@ -1,0 +1,13 @@
+html, body {
+    height: 100%;
+}
+
+body {
+    background-color: #FFEBDC;
+    height: 100%;
+}
+
+.jumbotron {
+    background-color: #FEAB6D;
+}
+
