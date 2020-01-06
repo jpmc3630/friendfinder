@@ -12,7 +12,7 @@ var friendsData = require('../data/friends.js');
 function apiRoutes(app) {
     
     app.get('/api/friends', function (req, res) {
-        res.sendFile(path.join(__dirname + '/../data/friends.js'));
+        res.json(friendsData);
     });
 
       
@@ -32,8 +32,6 @@ module.exports = apiRoutes;
 
 
 function findFriend(newUser) {
-    console.log('me:');
-    console.log(newUser.scores);
 
     friendsScoresArr = [];
     matchArr = [];
@@ -93,6 +91,10 @@ function findFriend(newUser) {
             `
         }
         
+
+        friendsData.push(newUser);
+
+
         return returnMessage;
 
 }

@@ -1,7 +1,6 @@
-html, body {
-    height: 100%;
+a {
+    color: black;
 }
-
 body {
     background-color: #FFEBDC;
     height: 100%;
@@ -9,5 +8,6 @@ body {
 
 .jumbotron {
     background-color: #FEAB6D;
+    padding: 40px 60px 40px 60px;
 }
 

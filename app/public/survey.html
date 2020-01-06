@@ -6,8 +6,8 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Survey</title>
 
-    <!-- <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous"> -->
-    <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
     <link rel="stylesheet" type="text/css" href="/style.css">
 
 
@@ -60,12 +60,14 @@
         
         <div class="jumbotron jumbotron-fluid">
             <div class="container text-center">
-                <h1>Welcome to the Survey</h1>
-                <h4>Please enter your name and paste a link to a profile picture of yours.</h4>
-                <h4>Then fill out each of the 10 simple questions below. All fields are required.</h4>
+                <h1 class="display-4">Welcome to the Survey</h1>
+                <hr class="my-4">
+                <p class="lead">Please enter your name and paste a link to a profile picture of yours.</p>
+                <p class="lead">Then fill out each of the 10 simple questions below. All fields are required.</p>
             </div>
         </div>
-
+        <div id="status-text" style="color:red; margin-left: 30px;"></div>
+        
         <form>
         
 
@@ -182,31 +184,24 @@
             
         </form>
         <button id="send-survey" class="btn btn-dark btn-block">Submit!</button>
-        <div id="status-text" style="color:red; margin-left: 30px;"></div>
-        
 
-    
-
-
+        <hr class="my-4">
 
     </div>
 
     </body>
     </html>
 
-    <!-- Link in jQuery -->
-    <script src="https://code.jquery.com/jquery.js"></script>
 
+    <script
+    src="https://code.jquery.com/jquery-3.4.1.js"
+    integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU="
+    crossorigin="anonymous"></script>
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
 
-    <!-- Latest compiled and minified JavaScript (USED FOR THE MODAL) -->
-   
-   <!--  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
-    -->
-   
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
-    <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
-
-
+    
 <script>
 
 
