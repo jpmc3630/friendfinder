@@ -22,21 +22,15 @@
     <div class="modal-dialog">
 
       <!-- Modal Content-->
-      <div class="modal-content">
+      <div class="modal-content text-center">
 
-        <!-- "X" Button to close the modal -->
-        <div class="modal-header">
-          <button type="button" class="close" data-dismiss="modal">&times;</button>
-          <h2 class="modal-title"><strong>Meet Your New Friend!</strong></h2>
+        <div class="modal-header text-center">
+            <h1 class="display-8" style="margin: 0 auto;">Meet Your New Friend!</h1>
         </div>
 
-        <!-- Modal Body (For Match Info) -->
-        <div class="modal-body" id="modal-body2">
-          <h2 id="matchName"></h2>
-          <img id="matchImg" src="" alt="Image Not Found" style="max-width: 350px;">
-        </div>
+        <!-- Modal Body  -->
+        <div class="modal-body" id="modal-body2"></div>
 
-        <!-- Modal Footer (Close Button) -->
         <div class="modal-footer">
           <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
         </div>
@@ -63,23 +57,21 @@
                 <h1 class="display-4">Welcome to the Survey</h1>
                 <hr class="my-4">
                 <p class="lead">Please enter your name and paste a link to a profile picture of yours.</p>
-                <p class="lead">Then fill out each of the 10 simple questions below. All fields are required.</p>
+                <p class="lead">Then fill out each of the 10 simple questions below.</p>
+                <hr class="my-4">
+                <p class="lead" style="margin-bottom: 0px;" id="status-text">All fields are required.</p>
+               
             </div>
         </div>
-        <div id="status-text" style="color:red; margin-left: 30px;"></div>
-        
+
         <form>
         
-
             <div class="form-group">
-                
                 <input type="text" class="form-control" placeholder="Your name here" id="name-input">
             </div>
             <div class="form-group">
-                
                 <input type="url" class="form-control" placeholder="Link to Profile Picture" id="pic-input">
             </div>
-
 
             <div class="form-group">
                 <select class="custom-select mr-sm-2 form-control" id="q1">
@@ -183,10 +175,8 @@
             </div>
             
         </form>
-        <button id="send-survey" class="btn btn-dark btn-block">Submit!</button>
-
-        <hr class="my-4">
-
+        <button id="send-survey" class="btn btn-dark btn-block" style="margin-bottom: 30px;">Submit!</button>
+        
     </div>
 
     </body>
@@ -204,6 +194,8 @@
     
 <script>
 
+let sent = false;
+
 
 
 $('.form-control').on("click", function() {
@@ -213,76 +205,73 @@ $('.form-control').on("click", function() {
 
 $('#send-survey').on("click", function() {
     
+    if (sent == false) {
 
+            let validated = true;
+            let myScores = [];
+            let myName;
+            let myPic;
 
-        let validated = true;
-        let myScores = [];
-        let myName;
-        let myPic;
-
-        $('.custom-select').each(function(){
-            let a = $(this).val();
-          if ( a != 1 && a != 2 && a != 3 && a != 4 && a != 5  ){
-            validated = false;
-            $(this).css('border', '2px solid red');
-          } else {
-            
-            myScores.push(a);
-          }
-        })
-        // This counters the async behavior of $.each()
-        .promise().done(function(){
-            // Determine if Name is entered
-          
-          if( $('#name-input').val().trim() == "" ) {
-            validated = false;
-            $('#name-input').css('border', '2px solid red');
-            $('#status-text').html('name not done');
-          } else {
-            myName = $('#name-input').val().trim();
-          }
-          // Determine if Link is entered
-            if( $('#pic-input').val().trim() == "" ) {
+            $('.custom-select').each(function(){
+                let a = $(this).val();
+            if ( a != 1 && a != 2 && a != 3 && a != 4 && a != 5  ){
                 validated = false;
-                $('#pic-input').css('border', '2px solid red');
-                $('#status-text').html('image not done');
-            // Check if any questions are incomplete
-          } else {
-            myPic = $('#pic-input').val().trim();
-          }
+                $(this).css('border', '2px solid red');
+            } else {
+                
+                myScores.push(a);
+            }
+            })
+            // This counters the async behavior of $.each()
+            .promise().done(function(){
+                // Determine if Name is entered
+            
+            if( $('#name-input').val().trim() == "" ) {
+                validated = false;
+                $('#name-input').css('border', '2px solid red');
+                $('#status-text').html('name not done');
+            } else {
+                myName = $('#name-input').val().trim();
+            }
+            // Determine if Link is entered
+                if( $('#pic-input').val().trim() == "" ) {
+                    validated = false;
+                    $('#pic-input').css('border', '2px solid red');
+                    $('#status-text').html('image not done');
+                // Check if any questions are incomplete
+            } else {
+                myPic = $('#pic-input').val().trim();
+            }
 
-          if (validated == false) {
-            $('#status-text').html('Please complete the highlighted questions and click submit again!');
-          }
-          
-          // Otherwise, the all fields are completed
-          else {
-            $('#status-text').html('good to post');
-            console.log(myScores);
-
-            let myObject = {
-                "name": myName,
-                "photo": myPic,
-                "scores": myScores
+            if (validated == false) {
+                $('#status-text').html('Please complete the highlighted fields first!');
+                $('#status-text').css('color', 'red');
+            }
+            
+            // Otherwise, the all fields are completed
+            else {
+                $('#status-text').html('Your profile has been added!');
+                $('#status-text').css('color', 'green');
+                let myObject = {
+                    "name": myName,
+                    "photo": myPic,
+                    "scores": myScores
                 };
 
 
                 $.post( '/api/friends', myObject, function( data ) {
                     $('#modal-body2').html(data);
-                    $("#resultsModal").modal('toggle');
-                    
+                    $('#resultsModal').modal('toggle');
+                    $('#send-survey').text('Return Home');
+                    sent = true;
+                });
 
-                        // Add Best Match attributes to Modal
-                        // $('#matchName').text(data.name);
-                        // $('#matchImg').attr('src', data.photo);
-                        // Show the modal with the best match 
-                        
-                       
+            };
+        
+        });
+    } else {
+        window.location.replace('/');
+    };
 
-            });
-
-          };
-    
-    });
 });
 </script>

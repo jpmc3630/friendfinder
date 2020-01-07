@@ -82,11 +82,11 @@ function findFriend(newUser) {
             }
         } 
 
-        let returnMessage = '';
+        let returnMessage = '<p class="lead">';
         if (matchArr.length > 1) {
-            returnMessage += 'You have matched equally with ' + matchArr.length + ' people!<br>'
+            returnMessage += 'You have matched equally with ' + matchArr.length + ' people!</p>'
         } else {
-            returnMessage += 'Your match has been found!<br>'
+            returnMessage += 'Your match has been found!</p>'
         }
 
         
@@ -94,16 +94,17 @@ function findFriend(newUser) {
         console.log(matchArr);
 
         for (key in matchArr) {
-            returnMessage += `
+            returnMessage += `<p class="lead" style="margin-bottom:10px;">
             ${friendsData[matchArr[key]].name}
-            <br>
-            <img src="${friendsData[matchArr[key]].photo}" style="width:200px;">
+            </p><br>
+            <img src="${friendsData[matchArr[key]].photo}" style="width:220px;">
             <br><br>
             `
         }
         
 
         friendsData.push(newUser);
+
         fs.writeFileSync(friendsFile, JSON.stringify(friendsData));
 
 

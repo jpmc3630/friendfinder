@@ -1,6 +1,15 @@
-a {
+a, a:visited  {
     color: black;
 }
+
+a:hover {
+    color: grey;
+}
+
+hr {
+    width: 80%;
+}
+
 body {
     background-color: #FFEBDC;
     height: 100%;
@@ -8,6 +17,6 @@ body {
 
 .jumbotron {
     background-color: #FEAB6D;
-    padding: 40px 60px 40px 60px;
+    padding: 40px 60px 30px 60px;
 }
 
